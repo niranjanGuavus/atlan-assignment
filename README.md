@@ -48,7 +48,10 @@ A performance snapshot of this application  is attached.
 * To run in local i used the light server and used compress technique for faster rendering.
 * Note:- There are some more option there can be implement to reduce the load time like `serve worker` and do `PWA` implementation, however due to time crunch these functionality is not implemented.
 
+application demo
 
+
+[atlan-assignment.webm](https://user-images.githubusercontent.com/8718722/184677656-407353c5-126a-47d0-9baf-53e19c173ac9.webm)
 
 
 
