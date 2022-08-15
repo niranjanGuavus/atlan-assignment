@@ -1,8 +1,8 @@
 .tab-group-container{
     display: flex;
     flex-direction: column;
-    padding: 15px;
-    gap: 10px;
+    padding: 10px;
+    
 
     .header-nav-btn {
         display: flex;
@@ -10,8 +10,10 @@
         gap: 10px;
         
         button {
-            height: 32px;
+            height: 30px;
             font-weight: bolder;
+            line-height: 30px;
+            min-width: 0px;
         }
     }
 }
