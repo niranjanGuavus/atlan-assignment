@@ -1,0 +1,14 @@
+<div class="tab-group-container">
+    <div class="header-nav-btn">
+        <button mat-raised-button color="primary" (click)="addTab()" title="Add a tab at end, max 10 tab is allowed"
+            [disabled]="tabs.length === 10">+</button>
+        <button mat-raised-button color="primary" (click)="removeLink()" [disabled]="tabs.length === 1"
+            title="Remove a tab from end, can't remove the last tab ">-</button>
+    </div>
+
+    <mat-tab-group mat-align-tabs="start">
+        <mat-tab *ngFor="let tab of tabs" [label]="tab.name">
+            <app-sql-query-runner class="query-runner" [activeLink]="tab"></app-sql-query-runner>
+        </mat-tab>
+    </mat-tab-group>
+</div>

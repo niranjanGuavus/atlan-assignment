@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Tab } from 'src/app/model/query-model';
 import { SqlQueryExecuterService } from './../../service/sql-query-executer.service';
 
 @Component({
@@ -7,14 +7,10 @@ import { SqlQueryExecuterService } from './../../service/sql-query-executer.serv
   templateUrl: './sql-query-runner.component.html',
   styleUrls: ['./sql-query-runner.component.scss']
 })
-export class SqlQueryRunnerComponent implements OnInit {
-  public background: ThemePalette = 'primary';
- 
-  public links = [
-    { id: 1, name: 'query 1', query: "select * from shippers", data: [] },
-    { id: 2, name: 'query 2', query: "select * from products", data: [] }
-  ];
-  public activeLink = this.links[0].id;
+export class SqlQueryRunnerComponent implements OnInit, OnChanges {
+  
+  @Input()
+   public activeLink:Tab = {id:1, name:'query 1'};
 
   public records: any[] = [];
   public query: string = "";
@@ -23,50 +19,20 @@ export class SqlQueryRunnerComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
-  addLink() {
-    const nextid = this.links.length+1;
-    this.links.push({
-      id: nextid,
-      name: `query ${nextid}`,
-       query: "", 
-       data: []
-    })
-    this.onLinkChange(this.links[this.links.length-1])
-  }
-
-  removeLink() {
-    const len = this.links.length;
-    if(len<=1) {
-      return;
-    }
-
-    this.links.splice(len-1, 1)
-    if(this.activeLink === len){
-      this.onLinkChange(this.links[len-2])
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['activeLink']?.currentValue !== changes['activeLink']?.previousValue) {
+      this.query = changes['activeLink']?.currentValue.query;
     }
   }
 
-  public onLinkChange(link: any): void {
-    this.activeLink = link.id
-    this.records = link.data;
-    this.query = link.query;
-
-  }
 
   private updateLink(query: string, data: []): void {
     this.records = data;
     this.query = query
-    for (const link of this.links) {
-      if (link.id === this.activeLink) {
-        link.query = query;
-        link.data = data;
-      }
-    }
   }
 
   public executeQuery(query: string): void {
-    const fileId = `query${this.activeLink % 4}`;
+    const fileId = `query${this.activeLink?.id % 4}`;
     this.sqlService.getResult(fileId, query)
       .subscribe(
         // Successful responses call the first callback.
@@ -85,7 +51,4 @@ export class SqlQueryRunnerComponent implements OnInit {
   public resetPage(): void {
     this.updateLink("", [])
   }
-
-
-
 }

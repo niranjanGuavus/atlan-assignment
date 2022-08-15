@@ -1,20 +1,4 @@
-<div class="query-page">
-
-    <div class="header-nav-bar">
-        <nav mat-tab-nav-bar [backgroundColor]="background" [tabPanel]="tabPanel" class="nav-bar">
-            <a mat-tab-link *ngFor="let link of links" (click)="onLinkChange(link)" [active]="activeLink == link.id">
-                {{link.name}} </a>
-        </nav>
-        <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
-
-        <div class="header-nav-btn">
-            <button mat-raised-button color="primary" (click)="addLink()" title="Add a tab at end">+</button>
-            <button mat-raised-button color="primary" (click)="removeLink()"
-                title="Remove a tab from end, can't remove the last tab ">-</button>
-        </div>
-
-    </div>
-
+<div class="query-runner">
     <app-sql-query-input [sqlQuery]="query" (execute)="executeQuery($event)" (resetPage)="resetPage()">
     </app-sql-query-input>
     <app-sql-query-result [records]="records" class="result-container"></app-sql-query-result>

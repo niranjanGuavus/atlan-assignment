@@ -1,0 +1,17 @@
+.tab-group-container{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+
+    .header-nav-btn {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        
+        button {
+            height: 32px;
+            font-weight: bolder;
+        }
+    }
+}
