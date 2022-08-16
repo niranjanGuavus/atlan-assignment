@@ -50,8 +50,9 @@ A performance snapshot of this application  is attached.
 
 application demo
 
+https://user-images.githubusercontent.com/8718722/184806384-53a1843b-ad01-45c5-9999-e78cf0c83ce4.mp4
 
-[atlan-assignment.webm](https://user-images.githubusercontent.com/8718722/184677656-407353c5-126a-47d0-9baf-53e19c173ac9.webm)
+
 
 
 
